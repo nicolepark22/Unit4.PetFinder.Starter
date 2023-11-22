@@ -30,22 +30,22 @@ app.get("/api/v1/pets/owner", (req, res) => {
     const { owner } = req.query;
 
     // find the pet in the pets array
-    const pet = pets.filter((pet) => pet.owner.toLowerCase() === owner.toLowerCase());
+    const filteredPets = pets.filter((pet) => pet.owner.toLowerCase() === owner.toLowerCase());
 
     // send the pet as a response
-    res.send(pet.owner);
+    res.send(filteredPets);
 });
 
 // get pet by name
 app.get("/api/v1/pets/:name", (req, res) => {
     // get the name from the request
-    const name = req.params.name;
+    const { name } = req.params;
 
     // find the pet in the pets array
     const pet = pets.find((pet) => pet.name.toLowerCase() === name.toLowerCase());
 
     // send the pet as a response
-    res.send(pets);
+    res.send(pet);
 });
 
 app.listen(PORT, () => {
